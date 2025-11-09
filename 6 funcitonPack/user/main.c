@@ -11,16 +11,10 @@ int main(void)
   My_USART_Init();
   My_OnBoardLED_Init();
 
-//  uint8_t bytes[] = {0, 1, 2, 3, 4, 5};
 
   while(1)
   {
-//		My_USART_SendBytes(USART1,bytes, 6);
-//		My_USART_SendByte(USART1,0x5a);
-//			My_USART_SendChar(USART1,'a');
-//		My_USART_SendString(USART1," Hello World \r\n");
-//		My_USART_Printf(USART1," Hello World2 \r\n");
-//    char ch = My_USART_ReceiveByte(USART1);
+
     char buffer[256];
 
     int len = 	My_USART_ReceiveLine(USART1, buffer, 256, LINE_SEPERATOR_LF, 10);
@@ -28,13 +22,10 @@ int main(void)
     if(len == 0) {
       My_USART_SendString(USART1, buffer);
       GPIO_WriteBit(GPIOC, GPIO_Pin_13, Bit_RESET);
-//      Delay(1000);
     } else {
       GPIO_WriteBit(GPIOC, GPIO_Pin_13, Bit_SET);
-//      Delay(1000);
     }
 
-//    My_USART_SendChar(USART1, ch);
   }
 }
 
